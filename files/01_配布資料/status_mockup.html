@@ -1,0 +1,422 @@
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-outer:#0a1712;
+    --bg-panel:#132a1f;
+    --bg-panel2:#0f221a;
+    --gold:#e8c547;
+    --gold-dim:#a5893a;
+    --cream:#f5efd8;
+    --green-great:#7ed957;
+    --green-dim:#3f6b3f;
+    --amber:#e0a840;
+    --red:#e2574c;
+    --blue:#5fb3d9;
+    --brown:#8a5a3b;
+  }
+  *{box-sizing:border-box;}
+  .rpg-root{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, #1a3527 0%, transparent 45%),
+      radial-gradient(circle at 90% 80%, #16301f 0%, transparent 40%),
+      var(--bg-outer);
+    color:var(--cream);
+    padding:28px 14px 40px;
+    min-height:100%;
+    display:flex;
+    justify-content:center;
+  }
+  .rpg-wrap{ width:100%; max-width:640px; }
+
+  .pixel-frame{
+    border:3px solid var(--gold);
+    box-shadow:0 0 0 3px var(--bg-outer), 0 0 0 6px var(--gold-dim), 0 14px 34px rgba(0,0,0,.55);
+    background:var(--bg-panel);
+    position:relative;
+    image-rendering:pixelated;
+  }
+
+  .title-block{ text-align:center; margin-bottom:18px; }
+  .eyebrow{
+    font-family:'DotGothic16', sans-serif;
+    letter-spacing:.35em;
+    font-size:11px;
+    color:var(--gold-dim);
+    margin:0 0 6px;
+  }
+  .title-block h1{
+    font-family:'DotGothic16', sans-serif;
+    font-size:clamp(20px,5.6vw,30px);
+    color:var(--gold);
+    text-shadow:2px 2px 0 #3a2c0d;
+    margin:0 0 6px;
+    line-height:1.5;
+  }
+  .title-block p{
+    font-size:12.5px;
+    color:#bcd8c4;
+    margin:0;
+    letter-spacing:.05em;
+  }
+
+  .status-panel{ padding:18px 16px; margin-bottom:16px; }
+  .status-header{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:2px dashed var(--gold-dim); padding-bottom:8px; margin-bottom:14px;
+  }
+  .field-name{ font-family:'DotGothic16'; font-size:16px; color:var(--cream); }
+  .field-name span{ color:var(--gold); font-size:11px; display:block; letter-spacing:.15em; margin-bottom:2px;}
+  .field-lv{ font-family:'DotGothic16'; font-size:13px; color:var(--amber); }
+
+  .status-body{ display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+
+  /* --- pixel mascot --- */
+  .mascot-box{
+    flex:0 0 auto; width:128px; display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .sprite-grid{
+    display:grid; grid-template-columns:repeat(8,14px); grid-template-rows:repeat(8,14px);
+    background:var(--bg-panel2); border:2px solid var(--gold-dim); padding:6px;
+  }
+  .sprite-grid div{ width:14px; height:14px; }
+  .mood-label{
+    font-family:'DotGothic16'; font-size:12px; padding:3px 10px;
+    border:1px solid var(--gold-dim); background:var(--bg-panel2); color:var(--cream);
+    transition:color .25s, border-color .25s;
+  }
+
+  /* --- bars --- */
+  .bars{ flex:1 1 240px; min-width:220px; display:flex; flex-direction:column; gap:12px; }
+  .bar-row .bar-label{
+    display:flex; justify-content:space-between; font-size:12px; margin-bottom:3px; color:#cfe6d5;
+  }
+  .bar-label b{ color:var(--cream); font-weight:700; }
+  .bar-label .val{ font-family:'DotGothic16'; color:var(--gold); font-size:12px; }
+  .bar-track{
+    height:14px; background:var(--bg-panel2); border:2px solid var(--gold-dim);
+    position:relative; overflow:hidden;
+  }
+  .bar-fill{
+    height:100%; width:50%; transition:width .35s ease, background-color .35s ease;
+    background-image:repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0 3px, transparent 3px 6px);
+  }
+  .tag-row{ display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
+  .tag{
+    font-size:10.5px; padding:2px 7px; border:1px solid var(--gold-dim);
+    background:var(--bg-panel2); color:#cfe6d5; letter-spacing:.03em;
+  }
+  .tag.warn{ color:var(--amber); border-color:var(--amber); }
+  .tag.danger{ color:var(--red); border-color:var(--red); }
+  .tag.great{ color:var(--green-great); border-color:var(--green-great); }
+
+  /* --- controller (sliders) --- */
+  .controller{ padding:16px; margin-bottom:16px; }
+  .controller h2{
+    font-family:'DotGothic16'; font-size:13px; color:var(--gold); margin:0 0 4px; letter-spacing:.05em;
+  }
+  .controller .sub{ font-size:11px; color:#8fae97; margin:0 0 14px; }
+  .slider-row{ margin-bottom:14px; }
+  .slider-row:last-child{ margin-bottom:0; }
+  .slider-row label{
+    display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:6px; color:#dcefe1;
+  }
+  .slider-row label .num{ font-family:'DotGothic16'; color:var(--gold); }
+  input[type=range]{
+    -webkit-appearance:none; width:100%; height:10px; background:var(--bg-panel2);
+    border:2px solid var(--gold-dim); outline:none; cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:16px; height:16px; background:var(--gold);
+    border:2px solid var(--bg-outer); cursor:pointer;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px; height:16px; background:var(--gold); border:2px solid var(--bg-outer); cursor:pointer; border-radius:0;
+  }
+
+  /* --- battle log --- */
+  .log-box{ padding:14px 16px; }
+  .log-box h2{
+    font-family:'DotGothic16'; font-size:13px; color:var(--gold); margin:0 0 8px; letter-spacing:.05em;
+  }
+  .log-screen{
+    background:var(--bg-panel2); border:2px solid var(--gold-dim);
+    height:112px; overflow-y:auto; padding:10px 12px; font-size:12.5px; line-height:1.9;
+  }
+  .log-screen p{ margin:0 0 2px; color:var(--cream); }
+  .log-screen p.new{ color:var(--gold); }
+  .log-screen::-webkit-scrollbar{ width:6px; }
+  .log-screen::-webkit-scrollbar-thumb{ background:var(--gold-dim); }
+
+  .footnote{
+    text-align:center; font-size:10.5px; color:#628a6c; margin-top:16px; line-height:1.8; letter-spacing:.02em;
+  }
+  .footnote b{ color:#8fae97; }
+
+  @media (max-width:420px){
+    .status-body{ justify-content:center; }
+    .mascot-box{ width:112px; }
+    .sprite-grid{ grid-template-columns:repeat(8,12px); grid-template-rows:repeat(8,12px);}
+    .sprite-grid div{ width:12px; height:12px; }
+  }
+</style>
+
+<div class="rpg-root">
+<div class="rpg-wrap">
+
+  <div class="title-block">
+    <p class="eyebrow">SMART AGRICULTURE SYSTEM</p>
+    <h1>俺だけ、畑のステータスが見える。</h1>
+    <p>Raspberry Pi × 土壌水分センサー × DHT22 で「畑の今」を可視化する</p>
+  </div>
+
+  <div class="pixel-frame status-panel">
+    <div class="status-header">
+      <div class="field-name"><span>FIELD</span>圃場A：ミニトマト畝</div>
+      <div class="field-lv">Lv. 1 栽培中</div>
+    </div>
+
+    <div class="status-body">
+      <div class="mascot-box">
+        <div class="sprite-grid" id="sprite"></div>
+        <div class="mood-label" id="moodLabel">ようすを みている…</div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label"><b>HP（どじょうすいぶん）</b><span class="val" id="soilVal">--%</span></div>
+          <div class="bar-track"><div class="bar-fill" id="soilBar"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><b>MP（しつど）</b><span class="val" id="humVal">--%</span></div>
+          <div class="bar-track"><div class="bar-fill" id="humBar"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><b>たいおん（きおん）</b><span class="val" id="tempVal">--℃</span></div>
+          <div class="bar-track"><div class="bar-fill" id="tempBar"></div></div>
+        </div>
+        <div class="tag-row" id="tagRow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pixel-frame controller">
+    <h2>📡 センサー・モニター</h2>
+    <p class="sub">全項目がラズパイの実測値です（DHT22 + ADC0834 + 土壌水分センサー）。</p>
+
+    <div class="slider-row">
+      <label>どじょうすいぶん（土壌水分センサー） <span class="num" id="soilNum">50%</span></label>
+      <input type="range" id="soilSlider" min="0" max="100" value="50" disabled style="opacity:.5;">
+      <div class="sub" style="margin-top:4px;" id="soilLiveTag">🔌 サーバー接続待ち…</div>
+    </div>
+    <div class="slider-row">
+      <label>しつど（DHT22 湿度） <span class="num" id="humNum">55%</span></label>
+      <input type="range" id="humSlider" min="0" max="100" value="55" disabled style="opacity:.5;">
+      <div class="sub" style="margin-top:4px;" id="humLiveTag">🔌 サーバー接続待ち…</div>
+    </div>
+    <div class="slider-row">
+      <label>きおん（DHT22 気温） <span class="num" id="tempNum">24℃</span></label>
+      <input type="range" id="tempSlider" min="-5" max="45" value="24" disabled style="opacity:.5;">
+      <div class="sub" style="margin-top:4px;" id="tempLiveTag">🔌 サーバー接続待ち…</div>
+    </div>
+  </div>
+
+  <div class="pixel-frame log-box">
+    <h2>📜 フィールドログ</h2>
+    <div class="log-screen" id="logScreen"></div>
+  </div>
+
+  <p class="footnote">
+    使用機材：<b>Raspberry Pi</b> ／ <b>DHT22（気温・湿度）</b> ／ <b>静電容量式 土壌水分センサー v1.2</b><br>
+    体験入学デモ用モックアップ（実機ではセンサー値がリアルタイムに反映されます）
+  </p>
+
+</div>
+</div>
+
+<script>
+(function(){
+  // 8x8 pixel sprite template: . empty / L leaf / F face / E eye / M mouth
+  var template = [
+    ".LL..LL.",
+    "LLLLLLLL",
+    ".FFFFFF.",
+    "FFFFFFFF",
+    "FFEFFEFF",
+    "FFFFFFFF",
+    ".FMMMMF.",
+    "..FFFF.."
+  ];
+
+  var grid = document.getElementById('sprite');
+  var cells = [];
+  template.forEach(function(row){
+    row.split('').forEach(function(ch){
+      var d = document.createElement('div');
+      cells.push({el:d, code:ch});
+      grid.appendChild(d);
+    });
+  });
+
+  function paintSprite(state){
+    var palette = {
+      great:  { L:'#7ed957', F:'#ffe9a8', E:'#2b2b2b', M:'#3f8f3f' },
+      normal: { L:'#8fbf5a', F:'#f3dfa0', E:'#2b2b2b', M:'#c98f3b' },
+      dry:    { L:'#b99a4a', F:'#e9c98a', E:'#3a2c0d', M:'#a5893a' },
+      danger: { L:'#7a6a3d', F:'#d8c090', E:'#9c2b23', M:'#9c2b23' },
+      wet:    { L:'#6fae8f', F:'#dfeee3', E:'#2b2b2b', M:'#5fb3d9' }
+    };
+    var p = palette[state] || palette.normal;
+    cells.forEach(function(c){
+      if(c.code === '.'){ c.el.style.background = 'transparent'; }
+      else { c.el.style.background = p[c.code]; }
+    });
+  }
+
+  // thresholds & helpers
+  function soilStatus(v){
+    if(v < 20) return {state:'danger', label:'かんそう危険！', tag:'水切れ寸前', cls:'danger', color:getVar('--red')};
+    if(v < 40) return {state:'dry', label:'すこし かわいてる', tag:'水やり検討', cls:'warn', color:getVar('--amber')};
+    if(v <= 70) return {state:'great', label:'ばっちり元気！', tag:'良好', cls:'great', color:getVar('--green-great')};
+    if(v <= 88) return {state:'wet', label:'ちょっと しっとり', tag:'やや過湿', cls:'warn', color:getVar('--blue')};
+    return {state:'danger', label:'根ぐされ危険！', tag:'過湿警報', cls:'danger', color:getVar('--red')};
+  }
+  function humStatus(v){
+    if(v < 30) return {tag:'空気カラカラ', cls:'warn', color:getVar('--amber')};
+    if(v <= 70) return {tag:'湿度 適正', cls:'great', color:getVar('--green-great')};
+    return {tag:'多湿・カビ注意', cls:'danger', color:getVar('--red')};
+  }
+  function tempStatus(v){
+    if(v < 5) return {tag:'低温注意', cls:'danger', color:getVar('--blue')};
+    if(v < 15) return {tag:'やや低め', cls:'warn', color:getVar('--amber')};
+    if(v <= 28) return {tag:'適温', cls:'great', color:getVar('--green-great')};
+    if(v <= 35) return {tag:'高温注意', cls:'warn', color:getVar('--amber')};
+    return {tag:'熱波警報', cls:'danger', color:getVar('--red')};
+  }
+  function getVar(name){
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function pct(v,min,max){ return Math.max(0, Math.min(100, (v-min)/(max-min)*100)); }
+
+  var soilSlider = document.getElementById('soilSlider');
+  var humSlider  = document.getElementById('humSlider');
+  var tempSlider = document.getElementById('tempSlider');
+
+  var soilBar = document.getElementById('soilBar');
+  var humBar  = document.getElementById('humBar');
+  var tempBar = document.getElementById('tempBar');
+
+  var soilVal = document.getElementById('soilVal');
+  var humVal  = document.getElementById('humVal');
+  var tempVal = document.getElementById('tempVal');
+
+  var soilNum = document.getElementById('soilNum');
+  var humNum  = document.getElementById('humNum');
+  var tempNum = document.getElementById('tempNum');
+
+  var moodLabel = document.getElementById('moodLabel');
+  var tagRow = document.getElementById('tagRow');
+  var logScreen = document.getElementById('logScreen');
+
+  var lastSoilState = null;
+  var messages = {
+    great:  ['はたけは とても げんきだ！', 'すくすく そだっている！'],
+    dry:    ['どじょうが かわきはじめた…', 'そろそろ 水やりの じかんかも？'],
+    danger: ['きけん！みずが たりない！！', 'このままでは しおれてしまう…'],
+    wet:    ['どじょうが しっとりしてきた', 'みずやりは ひかえめに'],
+    normal: ['ようすを みている…']
+  };
+
+  function addLog(text){
+    var p = document.createElement('p');
+    p.className = 'new';
+    p.textContent = '＞ ' + text;
+    logScreen.appendChild(p);
+    logScreen.scrollTop = logScreen.scrollHeight;
+    setTimeout(function(){ p.className=''; }, 900);
+    while(logScreen.children.length > 30){ logScreen.removeChild(logScreen.firstChild); }
+  }
+
+  function update(){
+    var soil = parseInt(soilSlider.value,10);
+    var hum  = parseInt(humSlider.value,10);
+    var temp = parseInt(tempSlider.value,10);
+
+    soilNum.textContent = soil + '%';
+    humNum.textContent  = hum + '%';
+    tempNum.textContent = temp + '℃';
+    soilVal.textContent = soil + '%';
+    humVal.textContent  = hum + '%';
+    tempVal.textContent = temp + '℃';
+
+    var sInfo = soilStatus(soil);
+    var hInfo = humStatus(hum);
+    var tInfo = tempStatus(temp);
+
+    soilBar.style.width = soil + '%';
+    soilBar.style.background = sInfo.color;
+    humBar.style.width = hum + '%';
+    humBar.style.background = hInfo.color;
+    tempBar.style.width = pct(temp,-5,45) + '%';
+    tempBar.style.background = tInfo.color;
+
+    paintSprite(sInfo.state);
+    moodLabel.textContent = sInfo.label;
+    moodLabel.style.color = sInfo.color;
+    moodLabel.style.borderColor = sInfo.color;
+
+    tagRow.innerHTML = '';
+    [sInfo, hInfo, tInfo].forEach(function(info){
+      var span = document.createElement('span');
+      span.className = 'tag ' + info.cls;
+      span.textContent = info.tag;
+      tagRow.appendChild(span);
+    });
+
+    if(sInfo.state !== lastSoilState){
+      var pool = messages[sInfo.state] || messages.normal;
+      addLog(pool[Math.floor(Math.random()*pool.length)]);
+      lastSoilState = sInfo.state;
+    }
+  }
+
+  [soilSlider, humSlider, tempSlider].forEach(function(s){
+    s.addEventListener('input', update);
+  });
+
+  var soilLiveTag = document.getElementById('soilLiveTag');
+  var humLiveTag = document.getElementById('humLiveTag');
+  var tempLiveTag = document.getElementById('tempLiveTag');
+  var everConnected = false;
+
+  async function pollServer(){
+    try{
+      var res = await fetch('/api/status');
+      if(!res.ok) throw new Error('bad response');
+      var data = await res.json();
+
+      soilSlider.value = data.soil;
+      humSlider.value = data.humidity;
+      tempSlider.value = data.temperature;
+      soilLiveTag.textContent = '🟢 ライブ計測中';
+      humLiveTag.textContent = '🟢 ライブ計測中';
+      tempLiveTag.textContent = '🟢 ライブ計測中';
+
+      if(!everConnected){
+        addLog('サーバーに せつぞく できた！');
+        everConnected = true;
+      }
+      update();
+    }catch(e){
+      soilLiveTag.textContent = '🔴 サーバーに接続できません';
+      humLiveTag.textContent = '🔴 サーバーに接続できません';
+      tempLiveTag.textContent = '🔴 サーバーに接続できません';
+    }
+  }
+
+  addLog('はたけの ステータスかくにんを かいしする！');
+  update();
+  pollServer();
+  setInterval(pollServer, 2000);
+})();
+</script>

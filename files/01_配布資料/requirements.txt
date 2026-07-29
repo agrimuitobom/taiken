@@ -1,0 +1,5 @@
+lgpio
+rpi-lgpio
+adafruit-circuitpython-dht
+flask
+flask-cors
