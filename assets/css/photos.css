@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* ==========================================================================
+   photos.css ─ 写真の差し替えはこのファイルだけで完結します
+   --------------------------------------------------------------------------
+   【手順】
+     1. 使いたい写真を assets/img/ に入れる（例: assets/img/hero.jpg）
+     2. 下の該当行の url("...") のファイル名を書き換える
+     3. ブラウザを再読み込み（Ctrl+Shift+R / Cmd+Shift+R）
+
+   ・ファイル名は半角英数字がおすすめです（日本語ファイル名も一応動きます）
+   ・推奨サイズは各行のコメント参照。大きすぎる写真は 2000px 幅程度に縮小を
+   ・写真を用意していない箇所は、そのままプレースホルダーで表示されます
+   ========================================================================== */
+
+/* --- トップページ ------------------------------------------------------ */
+
+/* メインビジュアル（横長・人物や畑の全景が映えます / 1920x1280 以上） */
+.ph-hero        { --photo: url("../img/placeholder/hero.svg"); }
+
+/* 「食農科学科とは」横の写真（縦長 3:4 / 1200x1600 程度） */
+.ph-about       { --photo: url("../img/placeholder/about.svg"); }
+
+/* 学びの3本柱（正方形 1:1 / 1000x1000 程度） */
+.ph-course-crop { --photo: url("../img/placeholder/course-crop.svg"); }  /* 作物・栽培 */
+.ph-course-food { --photo: url("../img/placeholder/course-food.svg"); }  /* 食品加工 */
+.ph-course-data { --photo: url("../img/placeholder/course-data.svg"); }  /* データ活用 */
+
+/* 一日体験入学の様子（横長 3:2 / 1600x1067 程度） */
+.ph-taiken      { --photo: url("../img/placeholder/taiken.svg"); }
+
+/* 生徒の様子（横長 3:2） */
+.ph-students    { --photo: url("../img/placeholder/students.svg"); }
+
+/* 校舎・アクセス（横長 16:9 / 1600x900 程度） */
+.ph-campus      { --photo: url("../img/placeholder/campus.svg"); }
+
+
+/* --- DX事業紹介ページ -------------------------------------------------- */
+
+/* ページ上部の帯（横長 16:9 / 1920x1080 以上） */
+.ph-dx-hero     { --photo: url("../img/placeholder/dx-hero.svg"); }
+
+/* 取り組みカード6枚（横長 4:3 / 1000x750 程度） */
+.ph-dx-1        { --photo: url("../img/placeholder/dx-1.svg"); }  /* 環境センシング */
+.ph-dx-2        { --photo: url("../img/placeholder/dx-2.svg"); }  /* ドローン・画像解析 */
+.ph-dx-3        { --photo: url("../img/placeholder/dx-3.svg"); }  /* 栽培記録のデジタル化 */
+.ph-dx-4        { --photo: url("../img/placeholder/dx-4.svg"); }  /* 食品加工とデータ */
+.ph-dx-5        { --photo: url("../img/placeholder/dx-5.svg"); }  /* 商品開発・情報発信 */
+.ph-dx-6        { --photo: url("../img/placeholder/dx-6.svg"); }  /* 生成AIの活用 */

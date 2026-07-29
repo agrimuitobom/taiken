@@ -1,0 +1,16 @@
+# OS / エディタ
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+~$*
+
+# Python
+__pycache__/
+*.py[cod]
+
+# 一時ファイル
+*.tmp
+*.part
+*.crdownload
+qr.png

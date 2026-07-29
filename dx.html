@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DXの取り組み｜西条農業高等学校 食農科学科</title>
+<meta name="description" content="愛媛県立西条農業高等学校 食農科学科が進める農業DX（デジタルトランスフォーメーション）事業の紹介。環境センシング、ドローン、栽培記録のデジタル化、データを活かした商品開発まで。">
+<meta name="theme-color" content="#14251b">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>document.documentElement.className += " js";</script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/photos.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へskip</a>
+
+<!-- ======================= ヘッダー ======================= -->
+<header class="header header--static">
+  <div class="header__inner">
+    <a class="brand" href="index.html" aria-label="西条農業高等学校 食農科学科 トップへ">
+      <svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.3" aria-hidden="true">
+        <circle cx="20" cy="20" r="18.5"/>
+        <path d="M20 31V15" stroke-linecap="round"/>
+        <path d="M20 20c0-4.4 3-8 7-8 0 4.4-3 8-7 8Z"/>
+        <path d="M20 25c0-4.4-3-8-7-8 0 4.4 3 8 7 8Z"/>
+      </svg>
+      <span class="brand__txt">
+        <span class="brand__school">愛媛県立西条農業高等学校</span>
+        <span class="brand__dept">食農科学科</span>
+      </span>
+    </a>
+
+    <nav class="gnav" aria-label="メインメニュー">
+      <a class="gnav__link" href="index.html#taiken">体験入学</a>
+      <a class="gnav__link" href="index.html#course">学科紹介</a>
+      <a class="gnav__link" href="dx.html" aria-current="page">DXの取り組み</a>
+      <a class="gnav__link" href="index.html#access">アクセス</a>
+      <a class="gnav__cta" href="download.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="M6.5 11.5 12 17l5.5-5.5"/><path d="M4.5 20h15"/></svg>
+        資料ダウンロード
+      </a>
+    </nav>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav class="wrap" aria-label="メニュー">
+    <ul class="drawer__list">
+      <li><a href="index.html"><em>01</em>トップ</a></li>
+      <li><a href="index.html#taiken"><em>02</em>一日体験入学</a></li>
+      <li><a href="index.html#course"><em>03</em>食農科学科の学び</a></li>
+      <li><a href="dx.html"><em>04</em>DXの取り組み</a></li>
+      <li><a href="download.html"><em>05</em>資料ダウンロード</a></li>
+      <li><a href="index.html#access"><em>06</em>アクセス</a></li>
+    </ul>
+    <p class="drawer__foot">校内Wi-Fi接続中のアドレス： <span data-host>localhost</span></p>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ======================= ページヘッダー ======================= -->
+  <section class="phero">
+    <div class="wrap phero__inner">
+      <ul class="crumb">
+        <li><a href="index.html">トップ</a></li>
+        <li>DXの取り組み</li>
+      </ul>
+      <p class="head__no" style="margin-top:1.5rem" data-reveal>DX PROJECT</p>
+      <h1 class="phero__ttl" data-reveal data-reveal-group="1">
+        勘と経験に、<br>データという味方を。
+      </h1>
+      <p class="phero__lead" data-reveal data-reveal-group="2">
+        食農科学科では、栽培から加工・販売までの各場面にデジタル技術を取り入れています。
+        目的は機械を導入すること自体ではなく、生徒が自分の目で確かめた事実を数字で裏づけし、
+        次の一手を自分で決められるようになることです。
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap" style="margin-top:clamp(-2rem,-4vw,-1rem)">
+    <div class="photo photo--16x9 ph-dx-hero" data-note="dx-hero" data-reveal></div>
+  </div>
+
+  <!-- ======================= なぜ取り組むのか ======================= -->
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="head">
+        <p class="head__no" data-reveal>01</p>
+        <h2 class="head__ttl" data-reveal data-reveal-group="1">なぜ、農業でDXなのか</h2>
+        <p class="head__en" data-reveal data-reveal-group="2">Background</p>
+      </div>
+
+      <div style="display:grid; gap:1.5rem; color:var(--c-ink-2)" data-reveal>
+        <p>
+          農業の現場では、担い手の減少と高齢化が進み、一人あたりが管理する面積は年々増えています。
+          一方で、天候の変化は以前より読みにくくなりました。限られた人手で品質を保つには、
+          「見回って気づく」だけに頼らない仕組みが必要です。
+        </p>
+        <p>
+          そこで役に立つのがデータです。ハウスの温度が何時に何度まで上がったのか、
+          かん水はいつ・どれだけ行ったのか。記録が残っていれば、うまくいった年を再現でき、
+          失敗の原因も探せます。ベテランの判断を言葉と数字に置き換えて、次の世代へ引き継ぐこともできます。
+        </p>
+        <p>
+          食農科学科のDX事業は、この考え方を高校の実習の中で体験することを目的にしています。
+          扱うのは特別な研究設備ではなく、市販のセンサーやタブレット、
+          表計算ソフトといった、卒業後もすぐ使える道具です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 6つの取り組み ======================= -->
+  <section class="section section--paper2" id="works">
+    <div class="wrap">
+      <div class="head">
+        <p class="head__no" data-reveal>02</p>
+        <h2 class="head__ttl" data-reveal data-reveal-group="1">6つの取り組み</h2>
+        <p class="head__en" data-reveal data-reveal-group="2">Our Works</p>
+        <p class="head__lead" data-reveal data-reveal-group="3">
+          <!-- TODO: 実際に取り組んでいる内容・機材名に合わせて調整してください -->
+          学科の授業・実習・課題研究の中で進めている取り組みです。
+        </p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card" data-reveal data-reveal-group="0">
+          <div class="photo photo--4x3 photo--zoom ph-dx-1" data-note="dx-1"></div>
+          <p class="card__no">01</p>
+          <h3 class="card__ttl">ハウスの環境センシング</h3>
+          <p class="card__txt">
+            気温・湿度・地温・土壌水分を自動で記録し、スマートフォンから確認できるようにしています。
+            異常値が出たときの気づきが早くなり、換水や換気の判断材料になります。
+          </p>
+          <div class="card__tags">
+            <span class="tag">IoT</span><span class="tag">環境制御</span><span class="tag">自動記録</span>
+          </div>
+        </article>
+
+        <article class="card" data-reveal data-reveal-group="1">
+          <div class="photo photo--4x3 photo--zoom ph-dx-2" data-note="dx-2"></div>
+          <p class="card__no">02</p>
+          <h3 class="card__ttl">ドローンと画像でほ場を見る</h3>
+          <p class="card__txt">
+            上空から撮影した画像で、生育のばらつきや水のたまりやすい場所を確かめます。
+            歩いて回るだけでは気づきにくい「面」の情報が得られます。
+          </p>
+          <div class="card__tags">
+            <span class="tag">ドローン</span><span class="tag">画像解析</span><span class="tag">生育診断</span>
+          </div>
+        </article>
+
+        <article class="card" data-reveal data-reveal-group="2">
+          <div class="photo photo--4x3 photo--zoom ph-dx-3" data-note="dx-3"></div>
+          <p class="card__no">03</p>
+          <h3 class="card__ttl">栽培記録のデジタル化</h3>
+          <p class="card__txt">
+            作業日誌を紙からタブレット入力に切り替え、写真とあわせて残しています。
+            誰が・いつ・何をしたかが共有されるため、複数の班での引き継ぎがスムーズになります。
+          </p>
+          <div class="card__tags">
+            <span class="tag">営農記録</span><span class="tag">クラウド共有</span><span class="tag">GAP</span>
+          </div>
+        </article>
+
+        <article class="card" data-reveal data-reveal-group="3">
+          <div class="photo photo--4x3 photo--zoom ph-dx-4" data-note="dx-4"></div>
+          <p class="card__no">04</p>
+          <h3 class="card__ttl">食品加工の数値管理</h3>
+          <p class="card__txt">
+            加熱温度・時間・糖度を測って記録し、仕上がりの違いを数字で比べます。
+            「おいしい」を再現できるレシピづくりと、衛生管理の考え方を同時に学びます。
+          </p>
+          <div class="card__tags">
+            <span class="tag">品質管理</span><span class="tag">HACCP</span><span class="tag">レシピ設計</span>
+          </div>
+        </article>
+
+        <article class="card" data-reveal data-reveal-group="4">
+          <div class="photo photo--4x3 photo--zoom ph-dx-5" data-note="dx-5"></div>
+          <p class="card__no">05</p>
+          <h3 class="card__ttl">商品開発と情報発信</h3>
+          <p class="card__txt">
+            販売実習の売上データやアンケートを集計し、次の商品づくりに反映します。
+            パッケージやSNSでの発信も生徒が担当し、伝わり方の違いを検証します。
+          </p>
+          <div class="card__tags">
+            <span class="tag">6次産業化</span><span class="tag">マーケティング</span><span class="tag">SNS</span>
+          </div>
+        </article>
+
+        <article class="card" data-reveal data-reveal-group="5">
+          <div class="photo photo--4x3 photo--zoom ph-dx-6" data-note="dx-6"></div>
+          <p class="card__no">06</p>
+          <h3 class="card__ttl">生成AIを学びの相棒に</h3>
+          <p class="card__txt">
+            調べたことの整理や、発表資料の下書き、プログラムづくりにAIを活用します。
+            出てきた答えをそのまま使わず、実習で得た事実と照らして確かめる姿勢も学びます。
+          </p>
+          <div class="card__tags">
+            <span class="tag">生成AI</span><span class="tag">情報活用</span><span class="tag">プログラミング</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 学びのサイクル ======================= -->
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head">
+        <p class="head__no" data-reveal>03</p>
+        <h2 class="head__ttl" data-reveal data-reveal-group="1">データを回して、学びが進む</h2>
+        <p class="head__en" data-reveal data-reveal-group="2">Learning Cycle</p>
+        <p class="head__lead" data-reveal data-reveal-group="3">
+          集めて終わりにせず、次の栽培や加工に返すところまでを一年間のサイクルとして扱います。
+        </p>
+      </div>
+
+      <div class="flow" data-reveal>
+        <div class="flow__step">
+          <p class="flow__no">STEP 01</p>
+          <h3 class="flow__ttl">集める</h3>
+          <p class="flow__txt">センサーと日誌アプリで、環境と作業を記録します。</p>
+        </div>
+        <div class="flow__step">
+          <p class="flow__no">STEP 02</p>
+          <h3 class="flow__ttl">整える</h3>
+          <p class="flow__txt">表計算ソフトで並べ替え、グラフにして比べられる形にします。</p>
+        </div>
+        <div class="flow__step">
+          <p class="flow__no">STEP 03</p>
+          <h3 class="flow__ttl">考える</h3>
+          <p class="flow__txt">差が出た理由を班で話し合い、仮説を立てて次の計画を決めます。</p>
+        </div>
+        <div class="flow__step">
+          <p class="flow__no">STEP 04</p>
+          <h3 class="flow__ttl">試す</h3>
+          <p class="flow__txt">条件を変えて栽培・加工し、結果をもう一度記録します。</p>
+        </div>
+        <div class="flow__step">
+          <p class="flow__no">STEP 05</p>
+          <h3 class="flow__ttl">伝える</h3>
+          <p class="flow__txt">課題研究発表会や地域のイベントで報告し、意見をもらいます。</p>
+        </div>
+      </div>
+
+      <!-- TODO: 実績値に差し替えてください（未確定の項目は削除しても崩れません） -->
+      <dl class="stats" style="margin-top:clamp(2.5rem,6vw,4rem)" data-reveal>
+        <div>
+          <dt>環境センサー設置</dt>
+          <dd>●<small> 台</small></dd>
+        </div>
+        <div>
+          <dt>デジタル化した栽培記録</dt>
+          <dd>●<small> 件／年</small></dd>
+        </div>
+        <div>
+          <dt>課題研究テーマ数</dt>
+          <dd>●<small> 班</small></dd>
+        </div>
+        <div>
+          <dt>連携機関・企業</dt>
+          <dd>●<small> 団体</small></dd>
+        </div>
+      </dl>
+      <p style="margin-top:1rem; font-size:.75rem; color:rgba(255,255,255,.5)">
+        ※ 数値は差し替え前の仮置きです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================= 使っている道具 ======================= -->
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <div class="head" style="margin-bottom:0">
+            <p class="head__no" data-reveal>04</p>
+            <h2 class="head__ttl" data-reveal data-reveal-group="1">使っている道具</h2>
+            <p class="head__en" data-reveal data-reveal-group="2">Tools</p>
+            <p class="head__lead" data-reveal data-reveal-group="3">
+              高価な専用機器はほとんど使っていません。手に入りやすい機材と、
+              卒業後も触れる機会の多いソフトを選んでいます。
+            </p>
+          </div>
+        </div>
+
+        <!-- TODO: 実際の機材・ソフト名に差し替えてください -->
+        <dl class="dl-rule" data-reveal data-reveal-group="1">
+          <div>
+            <dt>計測・記録</dt>
+            <dd>温湿度・土壌水分センサー、小型カメラ、Raspberry Pi</dd>
+          </div>
+          <div>
+            <dt>撮影</dt>
+            <dd>小型ドローン、タブレット端末</dd>
+          </div>
+          <div>
+            <dt>整理・分析</dt>
+            <dd>表計算ソフト、クラウドストレージ、簡単なPythonプログラム</dd>
+          </div>
+          <div>
+            <dt>発信</dt>
+            <dd>スライド作成ソフト、画像編集、SNS、校内Webサイト</dd>
+          </div>
+          <div>
+            <dt>このサイト</dt>
+            <dd>Raspberry Pi で校内に配信しています（体験入学の資料共有用）</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 生徒の学び ======================= -->
+  <section class="section section--paper2">
+    <div class="wrap">
+      <div class="split split--rev">
+        <div>
+          <div class="head" style="margin-bottom:0">
+            <p class="head__no" data-reveal>05</p>
+            <h2 class="head__ttl" data-reveal data-reveal-group="1">
+              身につくのは、<br>「調べて確かめる」習慣。
+            </h2>
+            <p class="head__en" data-reveal data-reveal-group="2">Outcome</p>
+            <div class="head__lead" data-reveal data-reveal-group="3">
+              <p>
+                データを扱う力は、農業だけのものではありません。
+                食品・流通・製造の現場でも、進学先の研究でも、
+                「事実を記録し、根拠を持って説明する」という進め方は同じです。
+              </p>
+            </div>
+            <ul class="checks" style="margin-top:2rem" data-reveal data-reveal-group="4">
+              <li>測ったことを表とグラフにまとめて説明できる</li>
+              <li>作業の手順と結果を、他の人が再現できる形で残せる</li>
+              <li>不具合の原因を、思い込みではなく記録から探せる</li>
+              <li>デジタルの道具を、目的に合わせて選べる</li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="figure" data-reveal>
+          <div class="photo photo--3x2 photo--zoom ph-students" data-note="students"></div>
+          <figcaption>課題研究では、班ごとにテーマを決めて一年間取り組みます。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 次に見るもの ======================= -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="grid grid--2">
+        <a class="linkcard" href="download.html" data-reveal>
+          <div>
+            <h3 class="linkcard__ttl">資料ダウンロード</h3>
+            <p class="linkcard__txt">体験入学で使うワークシートやスライドはこちら。</p>
+          </div>
+          <span class="ico-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M6.5 11.5 12 17l5.5-5.5"/><path d="M4.5 20h15"/></svg>
+          </span>
+        </a>
+        <a class="linkcard" href="index.html#taiken" data-reveal data-reveal-group="1">
+          <div>
+            <h3 class="linkcard__ttl">一日体験入学の流れ</h3>
+            <p class="linkcard__txt">当日のタイムテーブルと持ち物を確認できます。</p>
+          </div>
+          <span class="ico-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="M12.5 6.5 19 12l-6.5 5.5"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <a class="brand footer__brand" href="index.html">
+          <svg class="brand__mark" viewBox="0 0 40 40" fill="none" stroke-width="1.3" aria-hidden="true">
+            <circle cx="20" cy="20" r="18.5"/>
+            <path d="M20 31V15" stroke-linecap="round"/>
+            <path d="M20 20c0-4.4 3-8 7-8 0 4.4-3 8-7 8Z"/>
+            <path d="M20 25c0-4.4-3-8-7-8 0 4.4 3 8 7 8Z"/>
+          </svg>
+          <span class="brand__txt">
+            <span class="brand__school">愛媛県立西条農業高等学校</span>
+            <span class="brand__dept">食農科学科</span>
+          </span>
+        </a>
+        <address class="footer__addr">
+          愛媛県西条市●●<br>
+          TEL 0897-●●-●●●●
+        </address>
+      </div>
+      <nav aria-label="サイト内リンク">
+        <h3>Contents</h3>
+        <ul class="footer__links">
+          <li><a href="index.html#taiken">一日体験入学</a></li>
+          <li><a href="index.html#course">食農科学科の学び</a></li>
+          <li><a href="dx.html">DXの取り組み</a></li>
+          <li><a href="download.html">資料ダウンロード</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Notice</h3>
+        <ul class="footer__links">
+          <li>このサイトは一日体験入学のために校内で配信しています。</li>
+          <li>接続先： <span data-host>localhost</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; <span data-year>2026</span> 愛媛県立西条農業高等学校 食農科学科</p>
+      <p>ONE DAY EXPERIENCE SITE</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

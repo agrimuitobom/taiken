@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="750" viewBox="0 0 1000 750" role="img" aria-label="AI placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eae4d6"/>
+      <stop offset="1" stop-color="#d9d2c0"/>
+    </linearGradient>
+    <pattern id="p" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(27,26,23,0.045)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="750" fill="url(#g)"/>
+  <rect width="1000" height="750" fill="url(#p)"/>
+  <g fill="none" stroke="rgba(27,26,23,0.22)" stroke-width="1.11">
+    <circle cx="500.0" cy="330.0" r="82.5"/>
+    <path d="M343.2 330.0 H396.9"/>
+    <path d="M500.0 173.2 V226.9"/>
+  </g>
+  <text x="500.0" y="502.5" fill="rgba(27,26,23,0.62)" font-family="Helvetica, Arial, sans-serif" font-size="32" letter-spacing="7.0" text-anchor="middle">AI</text>
+  <text x="500.0" y="543.8" fill="rgba(27,26,23,0.38)" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="2.6" text-anchor="middle">PHOTO PLACEHOLDER / 1000x750</text>
+</svg>

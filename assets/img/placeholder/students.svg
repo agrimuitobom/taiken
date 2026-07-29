@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="933" viewBox="0 0 1400 933" role="img" aria-label="STUDENTS placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eae4d6"/>
+      <stop offset="1" stop-color="#d9d2c0"/>
+    </linearGradient>
+    <pattern id="p" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(27,26,23,0.045)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="933" fill="url(#g)"/>
+  <rect width="1400" height="933" fill="url(#p)"/>
+  <g fill="none" stroke="rgba(27,26,23,0.22)" stroke-width="1.56">
+    <circle cx="700.0" cy="410.5" r="102.6"/>
+    <path d="M505.0 410.5 H571.7"/>
+    <path d="M700.0 215.5 V282.2"/>
+  </g>
+  <text x="700.0" y="625.1" fill="rgba(27,26,23,0.62)" font-family="Helvetica, Arial, sans-serif" font-size="39" letter-spacing="8.6" text-anchor="middle">STUDENTS</text>
+  <text x="700.0" y="676.4" fill="rgba(27,26,23,0.38)" font-family="Helvetica, Arial, sans-serif" font-size="21" letter-spacing="3.4" text-anchor="middle">PHOTO PLACEHOLDER / 1400x933</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="DX PROJECT placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b3327"/>
+      <stop offset="1" stop-color="#0e1c14"/>
+    </linearGradient>
+    <pattern id="p" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g)"/>
+  <rect width="1920" height="1080" fill="url(#p)"/>
+  <g fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="2.13">
+    <circle cx="960.0" cy="475.2" r="118.8"/>
+    <path d="M734.3 475.2 H811.5"/>
+    <path d="M960.0 249.5 V326.7"/>
+  </g>
+  <text x="960.0" y="723.6" fill="rgba(255,255,255,0.24)" font-family="Helvetica, Arial, sans-serif" font-size="45" letter-spacing="9.9" text-anchor="middle">DX PROJECT</text>
+  <text x="960.0" y="783.0" fill="rgba(255,255,255,0.15)" font-family="Helvetica, Arial, sans-serif" font-size="24" letter-spacing="3.8" text-anchor="middle">PHOTO PLACEHOLDER / 1920x1080</text>
+</svg>
