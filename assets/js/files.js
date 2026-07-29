@@ -144,12 +144,14 @@
   function showGuide() {
     var isFile = window.location.protocol === 'file:';
     elList.innerHTML = '<div class="state">' +
-      '<b>配布ファイルはまだ読み込めていません</b>' +
+      '<b>配布ファイルの一覧を取得できませんでした</b>' +
       (isFile
-        ? 'このページを直接開いている（file://）ため、一覧を取得できません。<br>' +
+        ? 'HTMLファイルを直接開いている（file://）ため、一覧を読み込めません。<br>' +
           '<code>python3 server.py</code> を実行し、表示されたアドレスから開いてください。'
-        : '<code>files/</code> フォルダに配布したいファイルを入れてください。<br>' +
-          '静的配信のときは <code>python3 tools/make_manifest.py</code> の実行が必要です。') +
+        : 'このページは <code>server.py</code> を通さずに配信されています。<br>' +
+          '<code>files/</code> にファイルを置いたあと、<code>python3 tools/make_manifest.py</code> を実行して<br>' +
+          '<code>files/manifest.json</code> を更新してください。' +
+          '（GitHubへのpush時は自動更新されます）') +
       '</div>';
     if (elCount) elCount.textContent = '';
   }

@@ -1,0 +1,39 @@
+name: ファイル一覧を更新
+
+# files/ に変更があったら files/manifest.json を作り直してコミットする。
+# GitHubのWeb画面からファイルをアップロードするだけで、
+# 静的配信（GitHub Pages など）でも一覧に反映されるようにするための仕組み。
+
+on:
+  push:
+    paths:
+      - "files/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    # 自分がコミットした分で再実行されないようにする（無限ループ防止）
+    if: "!contains(github.event.head_commit.message, '[skip manifest]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: ファイル一覧を生成
+        run: python3 tools/make_manifest.py
+
+      - name: 変更があればコミット
+        run: |
+          if git diff --quiet -- files/manifest.json; then
+            echo "変更なし。コミットしません。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add files/manifest.json
+          git commit -m "ファイル一覧を更新 [skip manifest]"
+          git push

@@ -153,7 +153,18 @@ sudo nmcli device wifi hotspot ssid taiken-2026 password xxxxxxxx ifname wlan0
 ## 4. 静的配信する場合（サーバーを使わない）
 
 Apache / nginx / 校内のファイルサーバー / GitHub Pages などにそのまま置くこともできます。
-その場合はファイル一覧を自動取得できないので、置いたあとに一度だけ実行してください。
+この場合 `server.py` が動いていないので、**ファイル一覧の情報（`files/manifest.json`）が別途必要**です。
+
+### GitHubにpush・アップロードする場合 → 自動です
+
+`.github/workflows/update-manifest.yml` が、`files/` に変更があると
+`files/manifest.json` を作り直して自動でコミットします。
+
+**GitHubのWeb画面から「Add file → Upload files」でアップロードした場合も対象です。**
+アップロードの1〜2分後に一覧へ反映されるので、ページを再読み込みしてください。
+（進行状況は Actions タブで確認できます）
+
+### 手元のファイルをそのままコピーして使う場合
 
 ```bash
 python3 tools/make_manifest.py
@@ -161,6 +172,9 @@ python3 tools/make_manifest.py
 
 `files/manifest.json` が作られ、サイトがそれを読んで一覧を表示します。
 **ファイルを追加・削除したら、そのつど実行し直してください。**
+
+> 一覧に「配布ファイルの一覧を取得できませんでした」と出るときは、
+> この `manifest.json` が古い（または無い）状態です。
 
 ---
 

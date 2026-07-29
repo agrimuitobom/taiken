@@ -26,8 +26,9 @@ files/
 
 | 配信方法 | 操作 |
 | --- | --- |
-| `python3 server.py` で配信中 | **ファイルを置くだけ**。ページを再読み込みすれば出ます |
-| Apache / nginx などの静的配信 | `python3 tools/make_manifest.py` を実行してから再読み込み |
+| `python3 server.py` で配信中（ラズパイ） | **ファイルを置くだけ**。ページを再読み込みすれば出ます |
+| GitHubにpush／Web画面からアップロード | **そのままでOK**。GitHub Actions が一覧を自動更新します（1〜2分） |
+| Apache / nginx などに直接置く | `python3 tools/make_manifest.py` を実行してから再読み込み |
 
 ## 一覧に出ないファイル
 
