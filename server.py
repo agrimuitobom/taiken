@@ -28,11 +28,20 @@ from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import quote, unquote, urlparse
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 FILES_DIR = ROOT / "files"
-ZIP_NAME = "食農科学科_配布資料.zip"
+
+# ZIPのファイル名は半角英数字にする。日本語名はブラウザによって
+# 捨てられ、拡張子のない「download」として保存されてしまうため。
+# （ZIPの中のフォルダ名・ファイル名は日本語のままです）
+def zip_name() -> str:
+    return "taiken-materials-" + _dt.date.today().strftime("%Y%m%d") + ".zip"
+
+
+# ZIPはメモリ上で組み立てるため、これを超える場合は作らない
+ZIP_MAX_BYTES = 512 * 1024 * 1024
 
 # 一覧に出さないもの
 SKIP_NAMES = {"manifest.json", "README.md", ".gitkeep", ".DS_Store", "Thumbs.db", "desktop.ini"}
@@ -143,9 +152,16 @@ class SiteHandler(SimpleHTTPRequestHandler):
 
     def do_HEAD(self) -> None:  # noqa: N802
         path = unquote(urlparse(self.path).path)
-        if path.startswith("/api/"):
+        if path in ("/api/files", "/api/files.json", "/api/files.zip"):
+            is_zip = path.endswith(".zip")
             self.send_response(HTTPStatus.OK)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header(
+                "Content-Type",
+                "application/zip" if is_zip else "application/json; charset=utf-8",
+            )
+            if is_zip:
+                self.send_header("Content-Disposition", 'attachment; filename="%s"' % zip_name())
+            self.send_header("Cache-Control", "no-store")
             self.end_headers()
             return
         super().do_HEAD()
@@ -162,6 +178,16 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
 
     def _send_zip(self) -> None:
+        # ZIPはメモリ上で作るので、ラズパイが落ちない範囲に制限する
+        total = sum(it["size"] for it in scan_files())
+        if total > ZIP_MAX_BYTES:
+            self.send_error(
+                HTTPStatus.REQUEST_ENTITY_TOO_LARGE,
+                "files are too large to zip",
+                f"配布ファイルの合計が {total / 1048576:.0f}MB あり、まとめてのZIP化を中止しました。"
+                f"個別にダウンロードしてください。",
+            )
+            return
         try:
             body = build_zip()
         except OSError as exc:
@@ -171,10 +197,7 @@ class SiteHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/zip")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
-        self.send_header(
-            "Content-Disposition",
-            "attachment; filename=materials.zip; filename*=UTF-8''" + quote(ZIP_NAME),
-        )
+        self.send_header("Content-Disposition", 'attachment; filename="%s"' % zip_name())
         self.end_headers()
         self.wfile.write(body)
 

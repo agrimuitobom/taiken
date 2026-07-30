@@ -57,6 +57,12 @@
     return String(path).split('/').map(encodeURIComponent).join('/');
   }
 
+  function stamp() {
+    var d = new Date();
+    var p = function (n) { return n < 10 ? '0' + n : String(n); };
+    return String(d.getFullYear()) + p(d.getMonth() + 1) + p(d.getDate());
+  }
+
   /* --- 描画 ------------------------------------------------------------ */
   function fileRow(item) {
     var name = item.title || item.name;
@@ -162,6 +168,92 @@
     return items.filter(function (it) { return it && it.name && it.path; });
   }
 
+  /* --- まとめてダウンロード -------------------------------------------- */
+  /* server.py 配信時はサーバーが作ったZIPを使い、
+     静的配信のときはブラウザ側（zip.js）で組み立てる。 */
+  function setupZip(serverZipUrl) {
+    if (!elZip) return;
+
+    var totalSize = state.items.reduce(function (n, it) { return n + (it.size || 0); }, 0);
+    var label = elZip.querySelector('[data-fl-zip-label]');
+    var baseText = 'まとめてダウンロード（ZIP' + (totalSize ? '・約 ' + formatSize(totalSize) : '') + '）';
+    if (label) label.textContent = baseText;
+    elZip.hidden = false;
+
+    if (serverZipUrl) {
+      elZip.setAttribute('href', serverZipUrl);
+      return;
+    }
+
+    // 静的配信：クリック時にファイルを集めてZIPを作る
+    elZip.setAttribute('href', '#');
+    elZip.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (elZip.getAttribute('aria-busy') === 'true') return;
+      if (!window.TaikenZip) {
+        if (label) label.textContent = 'ZIPを作成できません（個別に保存してください）';
+        return;
+      }
+
+      var items = state.items;
+
+      // ブラウザのメモリ上で組み立てるため、極端に大きいときは確認する
+      if (totalSize > 200 * 1024 * 1024 &&
+          !window.confirm('合計 ' + formatSize(totalSize) +
+            ' あります。端末によっては時間がかかったり失敗することがあります。続けますか？')) {
+        return;
+      }
+
+      elZip.setAttribute('aria-busy', 'true');
+
+      var files = [];
+      var step = function (i) {
+        if (i >= items.length) {
+          try {
+            var blob = window.TaikenZip.build(files);
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            // 日本語のファイル名はブラウザによって捨てられ、拡張子なしの
+            // 「download」になってしまうため、ZIP名は半角英数字にする。
+            // （ZIPの中のフォルダ名・ファイル名は日本語のままです）
+            a.setAttribute('download', 'taiken-materials-' + stamp() + '.zip');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+            if (label) label.textContent = baseText;
+          } catch (err) {
+            if (label) label.textContent = 'ZIPの作成に失敗しました（個別に保存してください）';
+          }
+          elZip.removeAttribute('aria-busy');
+          return;
+        }
+
+        if (label) label.textContent = '準備中… ' + (i + 1) + ' / ' + items.length;
+        fetch(encodePath(items[i].path), { cache: 'no-store' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.arrayBuffer();
+          })
+          .then(function (buf) {
+            // files/ より下の相対パスをZIP内のパスにする
+            files.push({
+              name: items[i].path.replace(/^files\//, ''),
+              data: new Uint8Array(buf),
+              date: items[i].mtime ? new Date(items[i].mtime) : new Date()
+            });
+            step(i + 1);
+          })
+          .catch(function () {
+            step(i + 1);  // 取れなかったファイルは飛ばして続行する
+          });
+      };
+
+      step(0);
+    });
+  }
+
   function load() {
     var sources = ['api/files', 'files/manifest.json'];
 
@@ -182,11 +274,7 @@
           }
           state.items = items;
           state.source = sources[i];
-          // server.py 配信のときだけ「まとめてダウンロード」を出す
-          if (elZip && data.zip) {
-            elZip.hidden = false;
-            elZip.setAttribute('href', data.zip);
-          }
+          setupZip(data.zip || '');
           renderChips();
           render();
         })
