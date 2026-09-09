@@ -1,8 +1,8 @@
 {
- "generated": "2026-08-03T06:46:58+00:00",
+ "generated": "2026-09-09T22:52:57+00:00",
  "source": "manifest",
  "zip": "",
- "count": 7,
+ "count": 8,
  "items": [
   {
    "name": "adc0834.py",
@@ -10,7 +10,15 @@
    "path": "files/01_配布資料/adc0834.py",
    "category": "配布資料",
    "size": 2258,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
+  },
+  {
+   "name": "auto_water.zip",
+   "title": "auto_water",
+   "path": "files/01_配布資料/auto_water.zip",
+   "category": "配布資料",
+   "size": 625150,
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "requirements.txt",
@@ -18,7 +26,7 @@
    "path": "files/01_配布資料/requirements.txt",
    "category": "配布資料",
    "size": 60,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "server_phase1.py",
@@ -26,7 +34,7 @@
    "path": "files/01_配布資料/server_phase1.py",
    "category": "配布資料",
    "size": 2919,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "setup_guide.pdf",
@@ -34,7 +42,7 @@
    "path": "files/01_配布資料/setup_guide.pdf",
    "category": "配布資料",
    "size": 249410,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "status_mockup.html",
@@ -42,7 +50,7 @@
    "path": "files/01_配布資料/status_mockup.html",
    "category": "配布資料",
    "size": 16345,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "test_adc0834.py",
@@ -50,7 +58,7 @@
    "path": "files/01_配布資料/test_adc0834.py",
    "category": "配布資料",
    "size": 690,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   },
   {
    "name": "test_dht22.py",
@@ -58,7 +66,7 @@
    "path": "files/01_配布資料/test_dht22.py",
    "category": "配布資料",
    "size": 1142,
-   "mtime": "2026-08-03T06:46:58+00:00"
+   "mtime": "2026-09-09T22:52:57+00:00"
   }
  ]
 }
